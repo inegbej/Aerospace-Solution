@@ -1,0 +1,50 @@
+<div class="container" class="row d-flex justify-content-center">
+  <div class="row">
+    <div class="col-mx-auto currency-converter-width">
+        <mdb-card class="text-center">
+            <mdb-card-header class="indigo text-white">Currency Converter</mdb-card-header>
+            <mdb-card-body style="background-color: #fafafa">
+              <mdb-card-title>
+                <div class="row">
+                  <div class="col-5">
+                    <div class="dropdown" mdbDropdown>
+                      <button mdbDropdownToggle mdbBtn color="indigo" class="dropdown-toggle waves-light" type="button" mdbWavesEffect>{{fromCurrentCurrency}}</button>
+                      <div class="dropdown-menu dropdown-primary">
+                        <button class="dropdown-item" *ngFor="let convert of conversions" (click)="convertFromCurrentCurrency(convert.id,convert.name)">{{convert.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2"></div>
+                  <div class="col-5">
+                    <div class="dropdown" mdbDropdown>
+                      <button mdbDropdownToggle mdbBtn color="indigo" class="dropdown-toggle waves-light" type="button" mdbWavesEffect>{{toNewCurrency}}</button>
+                      <div class="dropdown-menu dropdown-primary">
+                        <button class="dropdown-item" *ngFor="let convert of conversions" (click)="convertToNewCurrency(convert.id, convert.name)">{{convert.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>              
+              </mdb-card-title>
+              <mdb-card-text>
+                <form class="text-center border border-light p-3" #conversionForm="ngForm">
+                    <div class="md-form">
+                        <input type="number" id="currencyId" [(ngModel)]="amount"  name="currencyInput">
+                        <button mdbBtn type="button" color="indigo" block="true" (click)="convertCurrency()">Convert</button>
+                    </div>
+                    <div class="md-form">
+                        <mdb-card-text *ngIf="toNewCurrency === 'CAD'">{{convertedAmount | currency:'CAD'}}</mdb-card-text>
+                        <mdb-card-text *ngIf="toNewCurrency === 'CHF'">{{convertedAmount | currency:'CHF'}}</mdb-card-text>
+                        <mdb-card-text *ngIf="toNewCurrency === 'GBP'">{{convertedAmount | currency:'GBP'}}</mdb-card-text>
+                        <mdb-card-text *ngIf="toNewCurrency === 'USD'">{{convertedAmount | currency:'USD'}}</mdb-card-text>
+                        <mdb-card-text *ngIf="toNewCurrency === 'JPY'">{{convertedAmount | currency:'JPY'}}</mdb-card-text>
+                    </div>
+                </form>                
+              </mdb-card-text>      
+            </mdb-card-body>
+          </mdb-card>
+    </div>
+    
+  </div>
+</div>
+
+
